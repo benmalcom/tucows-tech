@@ -8,6 +8,7 @@ const styles = {
       padding: 0,
       fontFamily: `'Nunito Sans', sans-serif`,
       fontSize: '14px',
+      fontWeight: 400,
       bg: '#FFFFFF',
       lineHeight: 'base',
       ' > :last-child': {

@@ -10,18 +10,21 @@ import { CiSearch } from 'react-icons/ci';
 import { Button } from '../../ui';
 
 type SearchFormProps = {
-  onSubmit(value: string): void;
+  onSubmitSearch(value: string): void;
 };
 
-const SearchForm: React.FC<SearchFormProps> = () => {
+const SearchForm: React.FC<SearchFormProps> = ({ onSubmitSearch }) => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    const formValues = Object.fromEntries(formData.entries());
-
-    // Process form data here (e.g., send to server)
-    console.log(formValues);
+    const formValues = Object.fromEntries(formData.entries()) as Record<
+      string,
+      string
+    >;
+    if (!formValues.searchQuery) return;
+    onSubmitSearch(formValues.searchQuery);
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <Flex justify="end" flex="1" align="center" gap={7}>

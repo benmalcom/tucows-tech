@@ -18,8 +18,8 @@ const NavBar: React.FC = () => {
       align="center"
       justify="space-between"
       flexDir={{ base: 'column', md: 'row' }}
-      my={5}
-      gap={4}
+      my={8}
+      gap={5}
     >
       <Flex
         justify={{ base: 'space-between', md: 'unset' }}
@@ -38,7 +38,7 @@ const NavBar: React.FC = () => {
       </Flex>
 
       <Flex justify="end" flex="1" align="center" gap={7}>
-        <SearchForm onSubmit={onSubmitSearch} />
+        <SearchForm onSubmitSearch={onSubmitSearch} />
         <Icon
           as={TbSettings}
           color="custom.100"
