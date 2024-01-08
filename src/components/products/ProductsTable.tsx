@@ -46,9 +46,21 @@ function getRandomBadgeColor() {
   return colors[randomIndex];
 }
 
+const nf = new Intl.NumberFormat(navigator.language, {
+  style: 'currency',
+  currency: 'USD',
+  currencyDisplay: 'narrowSymbol',
+  maximumFractionDigits: 2,
+});
+
 const ProductsTable: React.FC<ProductsTableProps> = ({ products }) => {
   return (
-    <TableContainer w="full" borderRadius="8px" border="1px solid #E4E4EF">
+    <TableContainer
+      w="full"
+      borderRadius="8px"
+      border="1px solid #E4E4EF"
+      mb={4}
+    >
       <Table variant="simple">
         <Thead>
           <Tr {...trStyles}>
@@ -98,7 +110,7 @@ const ProductsTable: React.FC<ProductsTableProps> = ({ products }) => {
                 </Flex>
               </Td>
               <Td {...tdStyles} isNumeric borderLeft="1px solid #E4E4EF">
-                {product.total}
+                {nf.format(product.total)}
               </Td>
             </Tr>
           ))}
