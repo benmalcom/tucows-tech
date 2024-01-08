@@ -13,6 +13,7 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import { HiMiniChevronDown } from 'react-icons/hi2';
+import { Badge } from 'components/ui';
 import { Product } from 'types/product';
 
 type ProductsTableProps = {
@@ -36,7 +37,14 @@ const tdStyles: StyleProps = {
   padding: '8px 16px',
   textAlign: 'center',
   display: { base: 'none', lg: 'table-cell' },
+  color: '#1A1A1A',
 };
+
+function getRandomBadgeColor() {
+  const colors = ['green', 'purple', 'orange', 'red'];
+  const randomIndex = Math.floor(Math.random() * colors.length);
+  return colors[randomIndex];
+}
 
 const ProductsTable: React.FC<ProductsTableProps> = ({ products }) => {
   return (
@@ -67,7 +75,11 @@ const ProductsTable: React.FC<ProductsTableProps> = ({ products }) => {
           {products.map((product) => (
             <Tr key={product.id} {...trStyles}>
               <Td {...tdStyles}>{product.id}</Td>
-              <Td {...tdStyles}>Status</Td>
+              <Td {...tdStyles}>
+                <Badge variant="subtle" colorScheme={getRandomBadgeColor()}>
+                  Status
+                </Badge>
+              </Td>
               <Td {...tdStyles}>{product.quantity}</Td>
               <Td
                 {...tdStyles}
