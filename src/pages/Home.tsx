@@ -1,4 +1,4 @@
-import { HStack } from '@chakra-ui/react';
+import { Flex, Stack, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { ProductsTable } from 'components/products';
 import { getProducts } from 'services/product';
@@ -15,9 +15,17 @@ const Home = () => {
 
   console.log('products ', products);
   return (
-    <HStack mt={16}>
+    <Stack mt={{ base: 0, md: 16 }}>
+      <Flex align="center" gap={2} my={2}>
+        <Text fontSize="16px" fontWeight={700} color="#1A1A1A">
+          Products
+        </Text>
+        <Text fontSize="12px" color="#808080">
+          10 of 64 results
+        </Text>
+      </Flex>
       <ProductsTable products={products} />
-    </HStack>
+    </Stack>
   );
 };
 

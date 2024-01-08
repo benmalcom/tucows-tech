@@ -30,10 +30,12 @@ const thStyles: StyleProps = {
   color: '#1A1A1A',
   lineHeight: '20px',
   textAlign: 'center',
+  display: { base: 'none', lg: 'table-cell' },
 };
 const tdStyles: StyleProps = {
   padding: '8px 16px',
   textAlign: 'center',
+  display: { base: 'none', lg: 'table-cell' },
 };
 
 const ProductsTable: React.FC<ProductsTableProps> = ({ products }) => {
@@ -45,12 +47,14 @@ const ProductsTable: React.FC<ProductsTableProps> = ({ products }) => {
             <Th {...thStyles}>ID</Th>
             <Th {...thStyles}>Status</Th>
             <Th {...thStyles}>Quantity</Th>
-            <Th {...thStyles}>Product name</Th>
+            <Th {...thStyles} display={{ base: 'table-cell' }}>
+              Product name
+            </Th>
             <Th
               {...thStyles}
+              display={{ base: 'none', md: 'flex' }}
               borderLeft="1px solid #E4E4EF"
-              as={Flex}
-              justify="space-between"
+              justifyContent="space-between"
             >
               <Flex flex={1} justify="center">
                 Prices
@@ -65,11 +69,21 @@ const ProductsTable: React.FC<ProductsTableProps> = ({ products }) => {
               <Td {...tdStyles}>{product.id}</Td>
               <Td {...tdStyles}>Status</Td>
               <Td {...tdStyles}>{product.quantity}</Td>
-              <Td {...tdStyles} textAlign="left" as={Flex} flexDir="column">
+              <Td
+                {...tdStyles}
+                display={{ base: 'inline-flex' }}
+                textAlign="left"
+                justifyContent="space-between"
+                flexDir="column"
+              >
                 {product.product}
-                <Text fontSize="12px" color="#808080">
-                  {product.serial}
-                </Text>
+                <Flex fontSize="12px" color="#808080" gap={2}>
+                  <Text>{product.serial}</Text>
+                  <Text display={{ base: 'block', md: 'none' }}>
+                    {' '}
+                    - Qty: {product.quantity}
+                  </Text>
+                </Flex>
               </Td>
               <Td {...tdStyles} isNumeric borderLeft="1px solid #E4E4EF">
                 {product.total}

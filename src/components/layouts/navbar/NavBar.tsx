@@ -18,7 +18,7 @@ const NavBar: React.FC = () => {
       align="center"
       justify="space-between"
       flexDir={{ base: 'column', md: 'row' }}
-      my={8}
+      my={{ base: 3, md: 8 }}
       gap={5}
     >
       <Flex
