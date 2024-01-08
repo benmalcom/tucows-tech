@@ -53,6 +53,44 @@ const nf = new Intl.NumberFormat(navigator.language, {
   maximumFractionDigits: 2,
 });
 
+const columns = [
+  { name: 'ID', selector: 'id' },
+  {
+    name: 'Status',
+    selector: null,
+  },
+  { name: 'Quantity', selector: 'quantity' },
+  {
+    name: 'Product name',
+    selector: 'product',
+    thProps: { display: { base: 'table-cell' } },
+  },
+  {
+    name: 'Prices',
+    selector: null,
+    render: () => (
+      <>
+        <Th
+          {...thStyles}
+          display={{ base: 'none', md: 'flex' }}
+          borderLeft="1px solid #E4E4EF"
+          justifyContent="space-between"
+        >
+          <Flex flex={1} justify="center">
+            Prices
+          </Flex>
+          <Icon as={HiMiniChevronDown} w="20px" h="20px" />
+        </Th>
+      </>
+    ),
+    thProps: {
+      display: { base: 'none', md: 'flex' },
+      borderLeft: '1px solid #E4E4EF',
+      justifyContent: 'space-between',
+    },
+  },
+];
+
 const ProductsTable: React.FC<ProductsTableProps> = ({ products }) => {
   return (
     <TableContainer
@@ -64,23 +102,18 @@ const ProductsTable: React.FC<ProductsTableProps> = ({ products }) => {
       <Table variant="simple">
         <Thead>
           <Tr {...trStyles}>
-            <Th {...thStyles}>ID</Th>
-            <Th {...thStyles}>Status</Th>
-            <Th {...thStyles}>Quantity</Th>
-            <Th {...thStyles} display={{ base: 'table-cell' }}>
-              Product name
-            </Th>
-            <Th
-              {...thStyles}
-              display={{ base: 'none', md: 'flex' }}
-              borderLeft="1px solid #E4E4EF"
-              justifyContent="space-between"
-            >
-              <Flex flex={1} justify="center">
-                Prices
-              </Flex>
-              <Icon as={HiMiniChevronDown} w="20px" h="20px" />
-            </Th>
+            {columns.map((col, index) => {
+              if (col.render) {
+                return col.render();
+              } else if (col.name) {
+                return (
+                  <Th key={index} {...thStyles} {...col.thProps}>
+                    {col.name}
+                  </Th>
+                );
+              }
+              return null;
+            })}
           </Tr>
         </Thead>
         <Tbody>
