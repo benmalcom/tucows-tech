@@ -2,6 +2,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
+import { SearchProvider } from './contexts/SearchContext';
 import { worker } from './mocks/browser';
 import reportAccessibility from './reportAccessibility';
 import reportWebVitals from './reportWebVitals';
@@ -13,7 +14,9 @@ worker.start().then(() => {
   root.render(
     <React.StrictMode>
       <ChakraProvider theme={theme}>
-        <App />
+        <SearchProvider>
+          <App />
+        </SearchProvider>
       </ChakraProvider>
     </React.StrictMode>,
   );
