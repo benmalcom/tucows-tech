@@ -5,12 +5,14 @@ import { TbSettings } from 'react-icons/tb';
 import Notification from './Notification';
 import SearchForm from './SearchForm';
 import UserDropdown from './UserDropdown';
+import useSearch from '../../../hooks/useSearch';
+import { SearchValue } from '../../../types/general';
 import { Logo } from '../../ui';
 
 const NavBar: React.FC = () => {
-  const onSubmitSearch = (searchValue: string) => {
-    console.log('searchValue ', searchValue);
-  };
+  const { onSearch } = useSearch();
+  const handleSearch = (searchValue: SearchValue) => onSearch(searchValue);
+
   return (
     <Flex
       w="full"
@@ -38,7 +40,7 @@ const NavBar: React.FC = () => {
       </Flex>
 
       <Flex justify="end" flex="1" align="center" gap={7}>
-        <SearchForm onSubmitSearch={onSubmitSearch} />
+        <SearchForm onSubmitSearch={handleSearch} />
         <Icon
           as={TbSettings}
           color="custom.100"

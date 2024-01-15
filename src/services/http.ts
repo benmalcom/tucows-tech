@@ -9,7 +9,7 @@ function doFetch(
   method: HttpT,
   url: string,
   body?: {
-    [key: string]: any;
+    [key: string]: never;
   },
 ) {
   const config: ConfigT = { method };

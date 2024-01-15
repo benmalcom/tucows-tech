@@ -3,9 +3,12 @@ import { useEffect, useState } from 'react';
 import { ProductsTable } from 'components/products';
 import { getProducts } from 'services/product';
 import { Product } from 'types/product';
+import useSearch from '../hooks/useSearch';
 
 const Home = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const { searchValue } = useSearch();
+
   useEffect(() => {
     getProducts()
       .then((data) => setProducts(data))
@@ -13,7 +16,10 @@ const Home = () => {
       .finally();
   }, []);
 
-  console.log('products ', products);
+  const filteredProducts = products.filter((productItem) =>
+    productItem.product.toLowerCase().includes(searchValue.toLowerCase()),
+  );
+
   return (
     <Stack mt={{ base: 0, md: 16 }}>
       <Flex align="center" gap={2} my={2}>
@@ -24,7 +30,7 @@ const Home = () => {
           10 of 64 results
         </Text>
       </Flex>
-      <ProductsTable products={products} />
+      <ProductsTable products={filteredProducts} />
     </Stack>
   );
 };

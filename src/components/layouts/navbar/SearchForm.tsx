@@ -7,10 +7,11 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import { CiSearch } from 'react-icons/ci';
+import { SearchValue } from '../../../types/general';
 import { Button } from '../../ui';
 
 type SearchFormProps = {
-  onSubmitSearch(value: string): void;
+  onSubmitSearch(value: SearchValue): void;
 };
 
 const SearchForm: React.FC<SearchFormProps> = ({ onSubmitSearch }) => {
@@ -19,7 +20,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSubmitSearch }) => {
     const formData = new FormData(event.currentTarget);
     const formValues = Object.fromEntries(formData.entries()) as Record<
       string,
-      string
+      SearchValue
     >;
     if (!formValues.searchQuery) return;
     onSubmitSearch(formValues.searchQuery);
@@ -42,11 +43,12 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSubmitSearch }) => {
             </InputLeftElement>
             <Input
               placeholder="Search"
+              color="rgba(0, 0, 0, 0.6)"
               h="full"
-              color="rgba(0, 0, 0, 0.30)"
               fontWeight={400}
               border="none"
               name="searchQuery"
+              _placeholder={{ color: 'rgba(0, 0, 0, 0.30)' }}
             />
           </InputGroup>
           <Button variant="primary" p="12px 24px" h="44px" type="submit">
