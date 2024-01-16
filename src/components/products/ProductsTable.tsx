@@ -1,4 +1,5 @@
 import {
+  Checkbox,
   Flex,
   Icon,
   StyleProps,
@@ -11,7 +12,7 @@ import {
   Thead,
   Tr,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { HiMiniChevronDown } from 'react-icons/hi2';
 import { Badge } from 'components/ui';
 import { Product } from 'types/product';
@@ -19,6 +20,7 @@ import { ModalManager as ProductDetailsModalManager } from './ProductDetailsModa
 
 type ProductsTableProps = {
   products: Product[];
+  isSelectable?: boolean;
 };
 const trStyles: StyleProps = {
   boxShadow: '0px -1px 0px 0px #E4E4EF inset',
@@ -92,7 +94,33 @@ const columns = [
   },
 ];
 
-const ProductsTable: React.FC<ProductsTableProps> = ({ products }) => {
+const ProductsTable: React.FC<ProductsTableProps> = ({
+  products,
+  isSelectable,
+}) => {
+  const [selectedProducts, setSelectedProducts] = useState<number[]>([]);
+  const [badgeColors, setBadgeColors] = useState<string[]>([]); // Store badge colors
+
+  useEffect(() => {
+    setBadgeColors(products.map(() => getRandomBadgeColor()));
+  }, [products]);
+
+  const handleCheckboxChange = (productId: number) => {
+    setSelectedProducts((prevSelected) => {
+      if (prevSelected.includes(productId)) {
+        return prevSelected.filter((id) => id !== productId);
+      } else {
+        return [...prevSelected, productId];
+      }
+    });
+  };
+
+  const hasAllSelected =
+    selectedProducts.length > 0 && selectedProducts.length === products.length;
+
+  const hasSomeSelected =
+    selectedProducts.length > 0 && selectedProducts.length !== products.length;
+
   return (
     <TableContainer
       w="full"
@@ -103,6 +131,22 @@ const ProductsTable: React.FC<ProductsTableProps> = ({ products }) => {
       <Table variant="simple">
         <Thead>
           <Tr {...trStyles}>
+            {isSelectable && (
+              <Th key="checkbox" {...thStyles}>
+                <Checkbox
+                  color="custom.100"
+                  onChange={() =>
+                    setSelectedProducts(
+                      selectedProducts.length === products.length
+                        ? []
+                        : products.map((product) => product.id),
+                    )
+                  }
+                  isChecked={hasAllSelected}
+                  isIndeterminate={hasSomeSelected}
+                />
+              </Th>
+            )}
             {columns.map((col, index) => {
               if (col.render) {
                 return col.render();
@@ -118,11 +162,20 @@ const ProductsTable: React.FC<ProductsTableProps> = ({ products }) => {
           </Tr>
         </Thead>
         <Tbody>
-          {products.map((product) => (
+          {products.map((product, index) => (
             <Tr key={product.id} {...trStyles}>
+              {isSelectable && (
+                <Td {...tdStyles}>
+                  <Checkbox
+                    color="custom.100"
+                    onChange={() => handleCheckboxChange(product.id)}
+                    isChecked={selectedProducts.includes(product.id)}
+                  />
+                </Td>
+              )}
               <Td {...tdStyles}>{product.id}</Td>
               <Td {...tdStyles}>
-                <Badge variant="subtle" colorScheme={getRandomBadgeColor()}>
+                <Badge variant="subtle" colorScheme={badgeColors[index]}>
                   Status
                 </Badge>
               </Td>

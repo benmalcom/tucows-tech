@@ -30,7 +30,7 @@ const Home = () => {
           10 of 64 results
         </Text>
       </Flex>
-      <ProductsTable products={filteredProducts} />
+      <ProductsTable products={filteredProducts} isSelectable />
     </Stack>
   );
 };
