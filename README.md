@@ -1,58 +1,50 @@
-# Honesto - Frontend Practical Exercise
+# Tucows Tech test
 
-Honesto is an application allowing peers to leave feedback for other team members. For this exercise, you are to
-implement the required tasks below, along with any bonus tasks you also have time to complete.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Designs for all tasks are [available in Figma](https://www.figma.com/file/wo1GYucGjPE8naJM5DZ9K3/Practical---FE-Exercise---Honesto-1.3), please follow these designs for all tasks.
+## Available Scripts
 
-All work should be done in PRs with thorough descriptions and no unrelated changes, merged to main (**no reviews are required**). Git usage is very important. For this exercise, we won't enforce any style, but we want to get a clear overview of your work just by looking at your commit history.
+In the project directory, you can run:
 
-You are free to make all the changes you want, but keep in mind the trade offs of doing it. For example, if you want to add a global state management library, you should balance de advantages and disadvantages of adding it to a project.
+### `yarn install`
 
-The application has a few small changes from Figma to help in development of the following tasks:
+To install project dependencies
 
-- The login page allows you to quickly login as a different user to see the data from the perspective of that user.
-- The time period for giving reviews is intentionally absent from the application, so for this exercise treat the feedback as a one time event rather than per time period. There is an optional task to extend this functionality to monthly reports.
+### `yarn start`
 
-## Task 1: Gather Feedback
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-A user can provide feedback on other team members (_"Share Feedback" in Figma_). For a selected team member, they will answer a series of questions.
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-- The questions to ask are already stored in the React context. Keep in mind that some are _skippable_.
-- Create the user interface needed to ask and collect answers for each question for a selected team member.
-- Update the app to save the results of the feedback. _The saved results do not need to persist through a page refresh but the app should allow full navigation without data loss._
-- Your data model should support feedback from/to various users.
+### `yarn test`
 
-## Task 2: Display Feedback Given
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-After having given feedback, a user can review all the feedback they have given to other team members (_"My Feedback" in Figma_).
+### `yarn build`
 
-- Display all feedback given by the current user.
-- Include the case of when no feedback has been given.
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-## Task 3: Display Received Feedback
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-Besides giving feedback, a user can also see feedback received from their team. (_"Team Feedback" in Figma_)
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-- Display the feedback received by the current user from other team members.
-- Include the case of when no feedback has been received.
+### `yarn eject`
 
-## Bonus Tasks (optional)
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-Feel free to also implement any the following task if you are just getting warmed up:
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-- [ ] Add Accessibility (A11y) testing and update components to comply
-- [ ] Create a dark theme for the project
-- [ ] Make the logged user widget, displayed in the upper-right corner the same as in designs
-- [ ] Make the app more responsive on various devices
-- [ ] Update the app to have multiple feedback collections (per month) for each user
-- [ ] Write some tests (jest, cypress, react testing library, etc)
-- [ ] Add documentation about your tasks to help other developers understand decisions you made
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-## Demo video
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-After you've wrapped up your project, please record a simple video, going through the main flows
+## Learn More
 
-- Going through the feedback form
-- Giving multiple feedbacks
-- Logging out and in with a different user and checking the previously given feedback
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
