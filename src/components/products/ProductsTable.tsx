@@ -1,5 +1,4 @@
 import {
-  Box,
   Checkbox,
   Flex,
   Icon,
@@ -149,7 +148,7 @@ const ProductsTable: React.FC<ProductsTableProps> = ({
         <Thead>
           <Tr {...trStyles}>
             {isSelectable && (
-              <Th key="checkbox" {...thStyles}>
+              <Th key="th-checkbox" {...thStyles}>
                 <Checkbox
                   color="custom.100"
                   onChange={() =>
@@ -184,6 +183,7 @@ const ProductsTable: React.FC<ProductsTableProps> = ({
               {isSelectable && (
                 <Td {...tdStyles}>
                   <Checkbox
+                    key="td-checkbox"
                     color="custom.100"
                     onChange={() => handleCheckboxChange(product.id)}
                     isChecked={selectedProducts.includes(product.id)}

@@ -30,7 +30,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSubmitSearch }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} role="form">
       <Flex justify="end" flex="1" align="center" gap={7}>
         <Flex gap="16px">
           <InputGroup
