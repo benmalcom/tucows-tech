@@ -15,6 +15,7 @@ import React from 'react';
 import { HiMiniChevronDown } from 'react-icons/hi2';
 import { Badge } from 'components/ui';
 import { Product } from 'types/product';
+import { ModalManager as ProductDetailsModalManager } from './ProductDetailsModal';
 
 type ProductsTableProps = {
   products: Product[];
@@ -133,7 +134,17 @@ const ProductsTable: React.FC<ProductsTableProps> = ({ products }) => {
                 justifyContent="space-between"
                 flexDir="column"
               >
-                {product.product}
+                <ProductDetailsModalManager
+                  product={product}
+                  triggerFunc={({ trigger }) => (
+                    <Text
+                      _hover={{ color: 'custom.100', cursor: 'pointer' }}
+                      onClick={() => trigger()}
+                    >
+                      {product.product}
+                    </Text>
+                  )}
+                />
                 <Flex fontSize="12px" color="#808080" gap={2}>
                   <Text>{product.serial}</Text>
                   <Text display={{ base: 'block', md: 'none' }}>
