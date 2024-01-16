@@ -9,10 +9,8 @@ import {
   Button,
   ModalFooter,
   Text,
-  ButtonProps,
   Flex,
   Image,
-  Stack,
   UnorderedList,
   ListItem,
 } from '@chakra-ui/react';

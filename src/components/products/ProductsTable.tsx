@@ -1,4 +1,5 @@
 import {
+  Box,
   Checkbox,
   Flex,
   Icon,
@@ -119,13 +120,23 @@ const ProductsTable: React.FC<ProductsTableProps> = ({
 
   useEffect(() => {
     onSelect(selectedProducts.length);
-  }, [selectedProducts]);
+  }, [onSelect, selectedProducts]);
 
   const hasAllSelected =
     selectedProducts.length > 0 && selectedProducts.length === products.length;
 
   const hasSomeSelected =
     selectedProducts.length > 0 && selectedProducts.length !== products.length;
+
+  if (products.length === 0) {
+    return (
+      <Flex py={3} px={4} bg="gray.100" align="center">
+        <Text color="custom.200" textAlign="center">
+          No products available.
+        </Text>
+      </Flex>
+    );
+  }
 
   return (
     <TableContainer

@@ -22,8 +22,11 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSubmitSearch }) => {
       string,
       SearchValue
     >;
-    if (!formValues.searchQuery) return;
     onSubmitSearch(formValues.searchQuery);
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (!event.target.value) onSubmitSearch('');
   };
 
   return (
@@ -48,6 +51,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSubmitSearch }) => {
               fontWeight={400}
               border="none"
               name="searchQuery"
+              onChange={handleChange}
               _placeholder={{ color: 'rgba(0, 0, 0, 0.30)' }}
             />
           </InputGroup>
