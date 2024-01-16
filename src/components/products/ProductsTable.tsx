@@ -21,6 +21,7 @@ import { ModalManager as ProductDetailsModalManager } from './ProductDetailsModa
 type ProductsTableProps = {
   products: Product[];
   isSelectable?: boolean;
+  onSelect(totalSelected: number): void;
 };
 const trStyles: StyleProps = {
   boxShadow: '0px -1px 0px 0px #E4E4EF inset',
@@ -97,6 +98,7 @@ const columns = [
 const ProductsTable: React.FC<ProductsTableProps> = ({
   products,
   isSelectable,
+  onSelect,
 }) => {
   const [selectedProducts, setSelectedProducts] = useState<number[]>([]);
   const [badgeColors, setBadgeColors] = useState<string[]>([]); // Store badge colors
@@ -114,6 +116,10 @@ const ProductsTable: React.FC<ProductsTableProps> = ({
       }
     });
   };
+
+  useEffect(() => {
+    onSelect(selectedProducts.length);
+  }, [selectedProducts]);
 
   const hasAllSelected =
     selectedProducts.length > 0 && selectedProducts.length === products.length;
